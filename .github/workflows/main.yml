@@ -1,0 +1,25 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Give permission
+      run: chmod +x inventory.sh test_inventory.sh
+
+    - name: Run inventory monitoring
+      run: ./inventory.sh
+
+    - name: Run testing
+      run: ./test_inventory.sh
+
+    - name: Deployment Simulation
+      run: echo "Deployment Success"
